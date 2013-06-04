@@ -1,7 +1,7 @@
 <?PHP // $Id: block_quest_clasification.php,v 1.1 2006/10/03 08:04:14 administrador Exp $
 
 
-$string['clasificationquest'] = 'Clasificación QUESTOURnament';
+$string['classificationquest'] = 'Clasificación QUESTOURnament';
 $string['error_emptyquestid'] = 'Necesita seleccionar un módulo QUESTOURnament para ver la clasificación';
 $string['configuredtoshownothing'] = 'La configuración de este bloque no permite mostrar ningún resultado. Puede optar por configurarlo u ocultarlo.';
 $string['error_nogroupsexist'] = 'Hay un error con este bloque: está ajustado para mostrar las calificaciones de los grupos, pero el curso no tiene grupos definidos.';
@@ -14,7 +14,7 @@ $string['error_emptyquestrecord'] = 'Hay un error con este bloque: el módulo QU
 $string['team'] = 'Equipo';
 $string['calification'] = 'Puntuación';
 $string['user'] = 'Usuario';
-$string['namequest'] = 'Módulo QUESTOURnament $a->name';
+$string['namequest'] = 'QUESTOURnament $a->name';
 $string['config_no_quests_in_course'] = 'Este curso no contiene módulos QUESTOURnament. Debe añadir al menos uno antes de poder utilizar este bloque correctamente.';
 $string['config_no_groups_in_course'] = 'Este curso no contiene grupos.';
  
