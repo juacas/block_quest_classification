@@ -204,10 +204,8 @@ class block_quest_classification extends block_base {
 				$data = array();
 				$sortdata = array();
 
-				$data[] = $OUTPUT->user_picture($user,array('courseid'=>$course->id, 'link'=>true,'size'=>35));
-				$sortdata['picture'] = 1;
-
-				$data[] = "<b>".fullname($user).'</b>';
+				$data[] = $OUTPUT->user_picture($user,array('courseid'=>$course->id, 'link'=>true));
+				$data[] = fullname($user);
 				$sortdata['user'] = fullname($user);
 
 				if($quest->allowteams){
@@ -232,7 +230,7 @@ class block_quest_classification extends block_base {
 			}
 
 			uasort($tablesort->sortdata, 'block_quest_sortfunction_calification');
-			$table = new stdClass();
+			$table = new html_table();
 			$table->data = array();
 			foreach($tablesort->sortdata as $key => $row) {
 				$table->data[] = $tablesort->data[$key];
@@ -261,8 +259,9 @@ class block_quest_classification extends block_base {
 				$$column = "<a href=\"view.php?sort=$column&amp;dir=$columndir\">".$string[$column]."</a>$columnicon";
 			}
 
-			$table->head = array ("",get_string('user','block_quest_classification'), get_string('calification','block_quest_classification'));
-
+			$table->head = array (get_string('user','block_quest_classification'), get_string('calification','block_quest_classification'));
+			$table->headspan=array(2,1);
+				
 		}
 		elseif($actionclasification == 'teams'){
 
@@ -359,127 +358,18 @@ class block_quest_classification extends block_base {
 			}
 
 			$table->head = array (get_string('team','block_quest_classification'), get_string('calification','block_quest_classification'));
+			$table->headspan=array(2,1);
+		
 		}
 
-		$table_string = $this->print_table($table,$nstudents);
+		$table_string = html_writer::table($table);//$this->print_table($table,$nstudents);
 		
 		return $table_string;
 
 	}
 
 	////////////////////////////////////////////////////////7
-	function print_table($table,$nstudents)
-	{
-		$string = '';
-
-		if (isset($table->align)) {
-			foreach ($table->align as $key => $aa) {
-				if ($aa) {
-					$align[$key] = ' align="'. $aa .'"';
-				} else {
-					$align[$key] = '';
-				}
-			}
-		}
-		if (isset($table->size)) {
-			foreach ($table->size as $key => $ss) {
-				if ($ss) {
-					$size[$key] = ' width="'. $ss .'"';
-				} else {
-					$size[$key] = '';
-				}
-			}
-		}
-		if (isset($table->wrap)) {
-			foreach ($table->wrap as $key => $ww) {
-				if ($ww) {
-					$wrap[$key] = ' nowrap="nowrap" ';
-				} else {
-					$wrap[$key] = '';
-				}
-			}
-		}
-
-		if (empty($table->width)) {
-			$table->width = '80%';
-		}
-
-		if (empty($table->cellpadding)) {
-			$table->cellpadding = '5';
-		}
-
-		if (empty($table->cellspacing)) {
-			$table->cellspacing = '1';
-		}
-
-		if (empty($table->class)) {
-			$table->class = 'generaltable';
-		}
-
-		$tableid = empty($table->id) ? '' : 'id="'.$table->id.'"';
-
-
-//		$string .= "<table align=\"center\" width=\"$table->width\" class=\"generalbox\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">".
-//                "<tr><td bgcolor=\"#ffffff\" class=\"generalbox\""."content\">";
-		$string .= '<table width="100%" border="0" align="center" ';
-		$string .= " cellpadding=\"$table->cellpadding\" cellspacing=\"$table->cellspacing\" class=\"$table->class\" $tableid>\n";
-
-		$countcols = 0;
-
-		if (!empty($table->head)) {
-			$countcols = count($table->head);
-			$string .= '<tr>';
-			foreach ($table->head as $key => $heading) {
-
-				if (!isset($size[$key])) {
-					$size[$key] = '';
-				}
-				if (!isset($align[$key])) {
-					$align[$key] = '';
-				}
-				$string .= '<th valign="top" '. $align[$key].$size[$key] .' nowrap="nowrap" class="header c'.$key.'">'. $heading .'</th>';
-			}
-			$string .= '</tr>'."\n";
-		}
-
-		$contador = 0;
-
-		if (!empty($table->data)) {
-			$oddeven = 1;
-			foreach ($table->data as $key => $row) {
-
-				$contador++;
-
-				$oddeven = $oddeven ? 0 : 1;
-				$string .= '<tr class="r'.$oddeven.'">'."\n";
-				if ($row == 'hr' and $countcols) {
-					$string .= '<td colspan="'. $countcols .'"><div class="tabledivider"></div></td>';
-				} else {  /// it's a normal row of data
-					foreach ($row as $key => $item) {
-
-						if (!isset($size[$key])) {
-							$size[$key] = '';
-						}
-						if (!isset($align[$key])) {
-							$align[$key] = '';
-						}
-						if (!isset($wrap[$key])) {
-							$wrap[$key] = '';
-						}
-						$string .= '<td '. $align[$key].$size[$key].$wrap[$key] .' class="cell c'.$key.'">'. $item .'</td>';
-
-					}
-				}
-				$string .= '</tr>'."\n";
-				if($contador >= $nstudents)
-				break;
-			}
-		}
-		$string .= '</table>'."\n";
-		//$string .= '</td></tr></table>';
-
-		return $string;
-	}
+	
 
 	function block_quest_get_course_members($courseid, $sort='s.timeaccess')
 	{
