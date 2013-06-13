@@ -113,7 +113,7 @@ class block_quest_classification extends block_base {
 		// The actual groupmode for the quest is now known to be $groupmode
 		if(!$can_access_groups)
 		{
-			$groupid = get_and_set_current_group($course, $groupmode, -1);
+			$groupid = get_current_group($course->id, false);
 		}
 
 		/////////////////////////////////////////////////////////////////
@@ -158,7 +158,7 @@ class block_quest_classification extends block_base {
 	////////////////////////////////////////////////////////////////////////////////////////7
 	function print_simple_calification($quest,$course,$currentgroup, $actionclasification, $nstudents){
 
-		global $CFG,$OUTPUT;
+		global $CFG,$OUTPUT,$DB;
 
 		$string = '';
 		$sort = '';
