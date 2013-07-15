@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the block_quiz_results plugin.
+ * Version information for the block_quest_classification plugin.
  *
  * @package    block
  * @subpackage quest_classification

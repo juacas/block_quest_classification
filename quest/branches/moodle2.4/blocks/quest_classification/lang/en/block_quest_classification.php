@@ -1,7 +1,11 @@
-<?PHP // $Id: block_quest_clasification.php,v 1.1 2006/10/03 09:39:35 administrador Exp $
-      // block_quiz_results.php - created with Moodle 1.5 UNSTABLE DEVELOPMENT (2004093001)
-
+<?PHP // $Id: block_quest_clasification.php $
+      // block_quest_classification.php -
+$string['pluginname'] = 'QUESTournament Classification';
 $string['block_quest_classification'] = 'QUESTournament Classification';
+$string['quest_classification:myaddinstance'] = 'Add the block to My Site.';
+$string['quest_classification:addinstance'] = 'Add a block to a course.';
+$string['quest_classification:viewlist'] = 'View the table of scores.';
+
 $string['classificationquest'] = 'QUESTournament Classification';
 $string['error_emptyquestid'] = 'A QUESTournament instance is needed to view its clasification';
 $string['configuredtoshownothing'] = 'This block\'s configuration does not allow to show nothing. You can config it or hide it.';
