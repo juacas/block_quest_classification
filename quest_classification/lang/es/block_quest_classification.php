@@ -1,4 +1,10 @@
 <?PHP // $Id: block_quest_clasification.php,v 1.1 2006/10/03 08:04:14 administrador Exp $
+$string['pluginname'] = 'Clasificación QUESTournament';
+$string['block_quest_classification'] = 'Clasificación QUESTournament';
+$string['quest_classification:myaddinstance'] = 'Añadir el bloque a My Site.';
+$string['quest_classification:addinstance'] = 'añadir el bloque en un curso.';
+$string['quest_classification:viewlist'] = 'Ver la lista de puntuaciones.';
+
 $string['classificationquest'] = 'Clasificación QUESTOURnament';
 $string['error_emptyquestid'] = 'Necesita seleccionar un módulo QUESTOURnament para ver la clasificación';
 $string['configuredtoshownothing'] = 'La configuración de este bloque no permite mostrar ningún resultado. Puede optar por configurarlo u ocultarlo.';
