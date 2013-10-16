@@ -17,7 +17,7 @@ $string['error_emptyquestrecord'] = 'Hay un error con este bloque: el módulo QU
 $string['team'] = 'Equipo';
 $string['calification'] = 'Puntuación';
 $string['user'] = 'Usuario';
-$string['namequest'] = 'QUESTOURnament $a->name';
+$string['namequest'] = 'QUESTOURnament {$a->name}';
 $string['config_no_quests_in_course'] = 'Este curso no contiene módulos QUESTOURnament. Debe añadir al menos uno antes de poder utilizar este bloque correctamente.';
 $string['config_no_groups_in_course'] = 'Este curso no contiene grupos.';
 ?>
