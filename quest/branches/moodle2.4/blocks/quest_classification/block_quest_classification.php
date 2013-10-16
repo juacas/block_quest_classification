@@ -232,7 +232,12 @@ class block_quest_classification extends block_base {
 			uasort($tablesort->sortdata, 'block_quest_sortfunction_calification');
 			$table = new html_table();
 			$table->data = array();
-			foreach($tablesort->sortdata as $key => $row) {
+			$count=0;
+			foreach($tablesort->sortdata as $key => $row)
+			{
+			    $count++;
+			    if ($count>$nstudents)
+			        break;
 				$table->data[] = $tablesort->data[$key];
 			}
 			$table->align = array ('left','left', 'center', 'center', 'center', 'center', 'center', 'center', 'center', 'center', 'center');
