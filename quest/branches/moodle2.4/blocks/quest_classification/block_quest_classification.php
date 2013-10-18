@@ -11,7 +11,7 @@
  ********************************************************/
 class block_quest_classification extends block_base {
 	function init() {
-		$this->title = get_string('classificationquest', 'block_quest_classification');
+		$this->title = get_string('classificationquest', 'block_quest_classification',$this->page->activityrecord);
 	}
 	function applicable_formats() {
 		return array('course' => true, 'mod-quest' => true);
