@@ -11,7 +11,6 @@
  ********************************************************/
 class block_quest_classification extends block_base {
 	function init() {
-	    print_object($this);die;
 		$this->title = get_string('classificationquest', 'block_quest_classification');
 	}
 	function applicable_formats() {
