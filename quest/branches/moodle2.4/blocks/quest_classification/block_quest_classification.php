@@ -126,11 +126,11 @@ class block_quest_classification extends block_base {
 		}
 
 		$nstudents = $this->config->showbest;
-
+		$this->title = get_string('namequest','block_quest_classification',$quest);
+		
 		if(	$can_access_groups
 		&&($groupmode != 0))
 		{
-			$string = '<center>'.get_string('namequest','block_quest_classification',$quest).'</center>';
 			$string .= substr($this->print_simple_calification($quest,$course,$groupid, $actionclasification,$nstudents),5);
 			$this->content->text = $string;
 			return $this->content;
@@ -143,8 +143,6 @@ class block_quest_classification extends block_base {
 			}
 			//$string = '<center>'.get_string('namequest','block_quest_classification',$quest).'</center>';
 			$listing = $this->print_simple_calification($quest,$course,$groupid, $actionclasification,$nstudents);
-			
-			$this->title = get_string('namequest','block_quest_classification',$quest);
 			$this->content->text = $listing;
 			return $this->content;
 		}
