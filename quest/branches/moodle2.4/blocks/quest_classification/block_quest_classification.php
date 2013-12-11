@@ -108,14 +108,15 @@ class block_quest_classification extends block_base {
 			$module = get_coursemodule_from_instance('quest', $questid);
 			$groupmode = $module->groupmode;
 		}
-
+		
+		
 		$can_access_groups=has_capability('moodle/site:accessallgroups', $this->page->context);
 		// The actual groupmode for the quest is now known to be $groupmode
 		if(!$can_access_groups)
 		{
 			$groupid = get_current_group($course->id, false);
 		}
-
+		$groupmode=$groupid=false;//JPC group support desactivation
 		/////////////////////////////////////////////////////////////////
 
 		if(($this->config->useteams == 0)||($quest->allowteams == 0)) {
