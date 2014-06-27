@@ -114,7 +114,7 @@ class block_quest_classification extends block_base {
 		// The actual groupmode for the quest is now known to be $groupmode
 		if(!$can_access_groups)
 		{
-			$groupid = get_current_group($course->id, false);
+			$groupid = groups_get_course_group($course);
 		}
 		$groupmode=$groupid=false;//JPC group support desactivation
 		/////////////////////////////////////////////////////////////////

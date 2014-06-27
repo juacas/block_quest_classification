@@ -11,8 +11,8 @@ $string['clasificationquest'] = 'QUESTOURnament Klassifizierung';
  $string['error_emptyquestrecord'] = 'Es gibt einen Fehler in diesem Block: es scheint als ob das ausgewhlte Modul QUESTOURnament in der Datenbank nicht existiert';
  $string['team'] ='Team';
  $string['calification'] = 'Bewertung';
- $string['user'] = 'Anwender'
- $string['namequest'] = 'Name des Modul QUESTOURnament $a->name';
+ $string['user'] = 'Anwender';
+ $string['namequest'] = 'Name des Modul QUESTOURnament {$a->name}';
  $string['config_no_quests_in_course'] = 'Dieser Kurs hat keine Module QUESTOURnament. Sie mssen vorher zumindest einen hinzufgen um diesen Block korrekt benutzen zu knnen.';
  $string['config_no_groups_in_course'] = 'Dieser Kurs hat keine Gruppen';
  
