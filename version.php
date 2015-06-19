@@ -17,7 +17,7 @@
 /**
  * Version information for the block_quest_classification plugin.
  *
- * @package    block
+ * @package    block_quest_classification
  * @subpackage quest_classification
  * @copyright  2007-13 Eduvalab University of Valladolid http://www.eduvalab.uva.es
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -25,9 +25,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2013050102;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2013050100;        // Requires this Moodle version
-$plugin->component = 'block_quest_classification'; // Full name of the plugin (used for diagnostics)
+$plugin->version   = 2013050102;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->requires  = 2012011900;        // Requires this Moodle version.
+$plugin->component = 'block_quest_classification'; // Full name of the plugin (used for diagnostics).
 $plugin->dependencies = array(
     'mod_quest' => ANY_VERSION,   // The Foo activity must be present (any version).
 );
+$plugin->maturity = MATURITY_STABLE;
+$plugin->release = 'v1.2.1';
