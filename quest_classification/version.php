@@ -28,3 +28,6 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version   = 2013050102;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2013050100;        // Requires this Moodle version
 $plugin->component = 'block_quest_classification'; // Full name of the plugin (used for diagnostics)
+$plugin->dependencies = array(
+    'mod_quest' => ANY_VERSION,   // The Foo activity must be present (any version).
+);
