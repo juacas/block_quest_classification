@@ -35,6 +35,7 @@
  * @copyright (c) 2014, Eduvalab  http://www.eduvalab.uva.es
  */
 class block_quest_classification extends block_base {
+
     /**
      * Initialization code
      */
