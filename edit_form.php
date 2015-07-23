@@ -25,7 +25,7 @@
  * Definition of the Block form
  * @author Juan Pablo de Castro and many others.
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @copyright (c) 2014, INTUITEL Consortium
+ * @copyright  2007-13 Eduvalab University of Valladolid http://www.eduvalab.uva.es
  */
 class block_quest_classification_edit_form extends block_edit_form {
 

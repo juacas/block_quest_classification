@@ -25,13 +25,14 @@
  * @package block_quest_classification
  * @author Juan Pablo de Castro and many others.
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @copyright (c) 2014, INTUITEL Consortium
+ * @copyright  2007-13 Eduvalab University of Valladolid http://www.eduvalab.uva.es
  */
+
 /**
  * Definition of the Block
  * @author Juan Pablo de Castro and many others.
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @copyright (c) 2014, INTUITEL Consortium
+ * @copyright (c) 2014, Eduvalab  http://www.eduvalab.uva.es
  */
 class block_quest_classification extends block_base {
 
@@ -229,7 +230,7 @@ class block_quest_classification extends block_base {
                 $tablesort->sortdata[] = $sortdata;
             }
 
-            uasort($tablesort->sortdata, 'block_quest_sortpublic function_calification');
+            uasort($tablesort->sortdata, 'block_quest_classification_sort_grade');
             $table = new html_table();
             $table->data = array();
             $count = 0;
@@ -374,8 +375,14 @@ class block_quest_classification extends block_base {
     }
 
 }
-
-function block_quest_sortfunction_calification($a, $b) {
+/**
+ * Define the order of the table by total score.
+ *
+ * @param type $a
+ * @param type $b
+ * @return bool
+ */
+function block_quest_classification_sort_grade($a, $b) {
     $sort = 'calification';
     $dir = 'DESC';
     if ($dir == 'ASC') {
@@ -384,4 +391,3 @@ function block_quest_sortfunction_calification($a, $b) {
         return ($a[$sort] < $b[$sort]);
     }
 }
-
