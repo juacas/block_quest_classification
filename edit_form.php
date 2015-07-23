@@ -21,6 +21,7 @@
  * @copyright 2013 Juan Pablo de Castro
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 /**
  * Definition of the Block form
  * @author Juan Pablo de Castro and many others.
@@ -29,6 +30,10 @@
  */
 class block_quest_classification_edit_form extends block_edit_form {
 
+    /**
+     * The configuration form of this block
+     * @param object $mform the form being built.
+     */
     protected function specific_definition($mform) {
         global $DB;
 
@@ -57,4 +62,5 @@ class block_quest_classification_edit_form extends block_edit_form {
 
         $mform->addElement('selectyesno', 'config_useteams', get_string('config_use_teams', 'block_quest_classification'));
     }
+
 }

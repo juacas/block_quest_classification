@@ -35,19 +35,32 @@
  * @copyright (c) 2014, Eduvalab  http://www.eduvalab.uva.es
  */
 class block_quest_classification extends block_base {
-
+    /**
+     * Initialization code
+     */
     public function init() {
         $this->title = get_string('classificationquest', 'block_quest_classification');
     }
 
+    /**
+     * Which page types this block may appear on.
+     *
+     * The information returned here is processed by the
+     * {@link blocks_name_allowed_in_format()} function. Look there if you need
+     * to know exactly how this works.
+     *
+     * Default case: everything except mod and tag.
+     *
+     * @return array page-type prefix => true/false.
+     */
     public function applicable_formats() {
         return array('course' => true, 'mod-quest' => true);
     }
 
     /**
-     * If this block belongs to a quiz context, then return that quiz's id.
+     * If this block belongs to a quest context, then return that quest's id.
      * Otherwise, return 0.
-     * @return integer the quiz id.
+     * @return integer the quest id.
      */
     public function get_owning_quest() {
         if (empty($this->instance->parentcontextid)) {
@@ -64,6 +77,11 @@ class block_quest_classification extends block_base {
         return $cm->instance;
     }
 
+    /**
+     * Serialize and store config data
+     * @param type $data
+     * @param type $nolongerused
+     */
     public function instance_config_save($data, $nolongerused = false) {
         if (empty($data->questid)) {
             $data->questid = $this->get_owning_quest();
@@ -71,6 +89,11 @@ class block_quest_classification extends block_base {
         parent::instance_config_save($data);
     }
 
+    /**
+     * return the content object.
+     *
+     * @return stdObject
+     */
     public function get_content() {
         global $USER, $CFG, $DB;
 
@@ -159,11 +182,25 @@ class block_quest_classification extends block_base {
         }
     }
 
+    /**
+     * Are you going to allow multiple instances of this block as there may be many questournaments in a course
+     * @return boolean
+     */
     public function instance_allow_multiple() {
         return true;
     }
 
-    public function print_simple_calification($quest, $course, $currentgroup, $actionclasification, $nstudents) {
+    /**
+     * Generates a simple report about califications in the contest.
+     *
+     * @param stdClass $quest
+     * @param stdClass $course
+     * @param type $currentgroup
+     * @param type $actionclasification 'global' or 'teams'
+     * @param type $nstudents
+     * @return string Table with the students' scores
+     */
+    public function print_simple_calification(stdClass $quest, stdClass $course, $currentgroup, $actionclasification, $nstudents) {
 
         global $CFG, $OUTPUT, $DB;
 
@@ -230,7 +267,7 @@ class block_quest_classification extends block_base {
                 $tablesort->sortdata[] = $sortdata;
             }
 
-            uasort($tablesort->sortdata, array($this,'sort_by_grade'));
+            uasort($tablesort->sortdata, array($this, 'sort_by_grade'));
             $table = new html_table();
             $table->data = array();
             $count = 0;
@@ -325,7 +362,7 @@ class block_quest_classification extends block_base {
                 $tablesort->data[] = $data;
                 $tablesort->sortdata[] = $sortdata;
             }
-            uasort($tablesort->sortdata, array($this,'sort_by_grade'));
+            uasort($tablesort->sortdata, array($this, 'sort_by_grade'));
             $table->data = array();
             foreach ($tablesort->sortdata as $key => $row) {
                 $table->data[] = $tablesort->data[$key];
@@ -359,35 +396,52 @@ class block_quest_classification extends block_base {
         return $tablestring;
     }
 
+    /**
+     * Users of the course that can view the classification.
+     * @param type $courseid
+     * @param type $sort
+     * @return array users
+     */
     public function block_quest_get_course_members($courseid, $sort = 's.timeaccess') {
         $members = get_users_by_capability($this->page->context, 'block/quest_classification:viewlist', null, $sort);
         return $members;
     }
 
-    public function block_quest_get_calification($quest) {
+    /**
+     * Scores of the users
+     * @param stdClass $quest
+     * @return array
+     */
+    public function block_quest_get_calification(stdClass $quest) {
         global $DB;
         return $DB->get_records('quest_calification_users', array('questid' => $quest->id), 'points ASC');
     }
 
-    public function block_quest_get_calification_teams($quest) {
+    /**
+     * Get scores of the teams
+     * @param stdClass $quest
+     * @return type
+     */
+    public function block_quest_get_calification_teams(stdClass $quest) {
         global $DB;
         return $DB->get_records('quest_calification_teams', array('questid' => $quest->id), 'points ASC');
     }
-/**
- * Define the order of the table by total score.
- *
- * @param type $a
- * @param type $b
- * @return bool
- */
-private function sort_by_grade($a, $b) {
-    $sort = 'calification';
-    $dir = 'DESC';
-    if ($dir == 'ASC') {
-        return ($a[$sort] > $b[$sort]);
-    } else {
-        return ($a[$sort] < $b[$sort]);
+
+    /**
+     * Define the order of the table by total score.
+     *
+     * @param array $a
+     * @param array $b
+     * @return bool
+     */
+    private function sort_by_grade($a, $b) {
+        $sort = 'calification';
+        $dir = 'DESC';
+        if ($dir == 'ASC') {
+            return ($a[$sort] > $b[$sort]);
+        } else {
+            return ($a[$sort] < $b[$sort]);
+        }
     }
-}
 
 }
