@@ -230,7 +230,7 @@ class block_quest_classification extends block_base {
                 $tablesort->sortdata[] = $sortdata;
             }
 
-            uasort($tablesort->sortdata, 'block_quest_classification_sort_grade');
+            uasort($tablesort->sortdata, array($this,'sort_by_grade'));
             $table = new html_table();
             $table->data = array();
             $count = 0;
@@ -325,7 +325,7 @@ class block_quest_classification extends block_base {
                 $tablesort->data[] = $data;
                 $tablesort->sortdata[] = $sortdata;
             }
-            uasort($tablesort->sortdata, 'block_quest_sortpublic function_calification');
+            uasort($tablesort->sortdata, array($this,'sort_by_grade'));
             $table->data = array();
             foreach ($tablesort->sortdata as $key => $row) {
                 $table->data[] = $tablesort->data[$key];
@@ -371,10 +371,8 @@ class block_quest_classification extends block_base {
 
     public function block_quest_get_calification_teams($quest) {
         global $DB;
-        return $DB->get_records_select('quest_calification_teams', array('questid' => $quest->id), 'points ASC');
+        return $DB->get_records('quest_calification_teams', array('questid' => $quest->id), 'points ASC');
     }
-
-}
 /**
  * Define the order of the table by total score.
  *
@@ -382,7 +380,7 @@ class block_quest_classification extends block_base {
  * @param type $b
  * @return bool
  */
-function block_quest_classification_sort_grade($a, $b) {
+private function sort_by_grade($a, $b) {
     $sort = 'calification';
     $dir = 'DESC';
     if ($dir == 'ASC') {
@@ -390,4 +388,6 @@ function block_quest_classification_sort_grade($a, $b) {
     } else {
         return ($a[$sort] < $b[$sort]);
     }
+}
+
 }
