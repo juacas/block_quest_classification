@@ -61,9 +61,9 @@ class block_quest_classification_edit_form extends block_edit_form {
         }
 
         $mform->addElement(
-            'select', 'config_showbest', 
+            'select', 'config_showbest',
             get_string('config_show_best', 'block_quest_classification'),
-            array('1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5,'6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10)
+            array('1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10)
         );
         $mform->setDefault('config_showbest', 3);
         $mform->setType('config_showbest', PARAM_INT);
