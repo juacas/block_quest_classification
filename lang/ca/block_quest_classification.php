@@ -40,6 +40,5 @@ $string['team'] = 'Equip';
 $string['calification'] = 'Puntuació';
 $string['user'] = 'Usuari';
 $string['namequest'] = 'Mòdul QUEST $a->name';
-$string['config_no_quests_in_course'] = 'Aquest curs no conté mòduls QUEST. Ha d\'afegir almenys uneixo abans de poder utilitzar aquest bloc
-correctament.';
+$string['config_no_quests_in_course'] = 'Aquest curs no conté mòduls QUEST. Ha d\'afegir almenys uneixo abans de poder utilitzar aquest bloc correctament.';
 $string['config_no_groups_in_course'] = 'Aquest curs no conté grups.';

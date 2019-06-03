@@ -1,0 +1,11 @@
+{
+   "name": "eduvalab/Questournament_Classification_block",
+   "description": "Block for showing a ranking of the best scores in a QUESTOURnament activity.",
+   "authors": [
+       {
+           "name": "Juan-Pablo de Castro",
+            "email": "jpdecastro@tel.uva.es"
+        }
+   ],
+   "homepage": "http://juacas.github.io/moodle-mod_quest/index.html"
+}

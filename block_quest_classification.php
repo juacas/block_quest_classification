@@ -27,7 +27,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @copyright  2007-13 Eduvalab University of Valladolid http://www.eduvalab.uva.es
  */
-
+defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 /**
  * Definition of the Block
  * @author Juan Pablo de Castro and many others.
@@ -77,7 +77,6 @@ class block_quest_classification extends block_base {
         }
         return $cm->instance;
     }
-
     /**
      * Serialize and store config data
      * @param type $data
@@ -97,6 +96,7 @@ class block_quest_classification extends block_base {
      */
     public function get_content() {
         global $USER, $CFG, $DB;
+        $string = '';
 
         if ($this->content !== null) {
             return $this->content;
@@ -202,10 +202,9 @@ class block_quest_classification extends block_base {
      * @return string Table with the students' scores
      */
     public function print_simple_calification(stdClass $quest, stdClass $course, $currentgroup, $actionclasification, $nstudents) {
-
         global $CFG, $OUTPUT, $DB;
-
         $string = '';
+        $dir = '';
         $sort = '';
         $users = $this->block_quest_get_course_members($course->id, "u.lastname, u.firstname");
         if (!$users) {
@@ -221,9 +220,7 @@ class block_quest_classification extends block_base {
         $indice = 0;
 
         if ($actionclasification == 'global') {
-
             if ($califications = $this->block_quest_get_calification($quest)) {
-
                 foreach ($califications as $calification) {
                     // ...skip if student not in group.
                     if ($currentgroup) {
@@ -235,7 +232,6 @@ class block_quest_classification extends block_base {
                     $indice++;
                 }
             }
-
             for ($i = 0; $i < $indice; $i++) {
                 foreach ($users as $user) {
                     if ($user->id == $calificationusers[$i]->userid) {
@@ -267,7 +263,6 @@ class block_quest_classification extends block_base {
                 $tablesort->data[] = $data;
                 $tablesort->sortdata[] = $sortdata;
             }
-
             uasort($tablesort->sortdata, array($this, 'sort_by_grade'));
             $table = new html_table();
             $table->data = array();
@@ -279,11 +274,11 @@ class block_quest_classification extends block_base {
                 }
                 $table->data[] = $tablesort->data[$key];
             }
-            $table->align = array('left', 'left', 'center', 'center', 'center', 'center', 'center', 'center', 'center', 'center', 'center');
-
+            $table->align = array('left', 'left', 'center', 'center', 'center', 'center',
+                                 'center', 'center', 'center', 'center', 'center');
+            $string = [];
             $columns = array('picture', 'user', 'calification');
             $table->width = "95%";
-
             foreach ($columns as $column) {
                 $string[$column] = get_string("$column", 'quest');
                 if ($sort != $column) {
@@ -303,7 +298,8 @@ class block_quest_classification extends block_base {
             }
 
             $table->head = array(get_string('user', 'block_quest_classification'), get_string('calification',
-                        'block_quest_classification'));
+                        'block_quest_classification')
+                    );
             $table->headspan = array(2, 1);
         } else if ($actionclasification == 'teams') {
 
@@ -368,7 +364,8 @@ class block_quest_classification extends block_base {
             foreach ($tablesort->sortdata as $key => $row) {
                 $table->data[] = $tablesort->data[$key];
             }
-            $table->align = array('left', 'center', 'center', 'center', 'center', 'center', 'center', 'center', 'center', 'center', 'center');
+            $table->align = array('left', 'center', 'center', 'center', 'center', 'center',
+                                  'center', 'center', 'center', 'center', 'center');
 
             $columns = array('team', 'calification');
             $table->width = "95%";

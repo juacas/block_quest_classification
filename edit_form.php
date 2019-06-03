@@ -21,6 +21,7 @@
  * @copyright 2013 Juan Pablo de Castro
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
 /**
  * Definition of the Block form
@@ -31,8 +32,9 @@
 class block_quest_classification_edit_form extends block_edit_form {
 
     /**
-     * The configuration form of this block
-     * @param object $mform the form being built.
+     * The configuration form of this block.
+     * 
+     * @param MoodleQuickForm $mform the form being built.
      */
     protected function specific_definition($mform) {
         global $DB;
@@ -43,24 +45,29 @@ class block_quest_classification_edit_form extends block_edit_form {
         if (!$this->block->get_owning_quest()) {
             $quests = $DB->get_records_menu('quest', array('course' => $this->page->course->id), '', 'id, name');
             if (empty($quests)) {
-                $mform->addElement('static', 'no_quests_in_course',
-                        get_string('error_emptyquestid', 'block_quest_classification'),
-                        get_string('config_no_quests_in_course', 'block_quest_classification'));
+                $mform->addElement(
+                    'static', 'no_quests_in_course',
+                    get_string('error_emptyquestid', 'block_quest_classification'),
+                    get_string('config_no_quests_in_course', 'block_quest_classification')
+                );
             } else {
                 foreach ($quests as $id => $name) {
                     $quests[$id] = strip_tags(format_string($name));
                 }
-                $mform->addElement('select', 'config_questid', get_string('config_select_quest', 'block_quest_classification'),
-                        $quests);
+                $mform->addElement(
+                    'select', 'config_questid', get_string('config_select_quest', 'block_quest_classification'), $quests
+                );
             }
         }
 
-        $mform->addElement('text', 'config_showbest', get_string('config_show_best', 'block_quest_classification'),
-                array('size' => 3));
+        $mform->addElement(
+            'select', 'config_showbest', 
+            get_string('config_show_best', 'block_quest_classification'),
+            array('1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5,'6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10)
+        );
         $mform->setDefault('config_showbest', 3);
         $mform->setType('config_showbest', PARAM_INT);
 
         $mform->addElement('selectyesno', 'config_useteams', get_string('config_use_teams', 'block_quest_classification'));
     }
-
 }
