@@ -13,7 +13,7 @@
 }
 
 .block_quest_classification_results table.grades caption {
-    margin: 1em 0px 0px 0px;
+    margin: 1em 0 0 0;
     border-bottom: 1px solid;
     font-weight: bold;
 }

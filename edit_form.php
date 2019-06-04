@@ -33,7 +33,7 @@ class block_quest_classification_edit_form extends block_edit_form {
 
     /**
      * The configuration form of this block.
-     * 
+     *
      * @param MoodleQuickForm $mform the form being built.
      */
     protected function specific_definition($mform) {

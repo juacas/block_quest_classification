@@ -15,12 +15,10 @@
 // along with Questournament for Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
  * Questournament activity for Moodle lang file
- *
  * Module developed at the University of Valladolid
  * Designed and directed by Juan Pablo de Castro with the effort of many other
  * students of telecommunciation engineering
  * this module is provides as-is without any guarantee. Use it as your own risk.
- *
  * @author Juan Pablo de Castro and many others.
  * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @copyright (c) 2014, INTUITEL Consortium

@@ -79,8 +79,8 @@ class block_quest_classification extends block_base {
     }
     /**
      * Serialize and store config data
-     * @param type $data
-     * @param type $nolongerused
+     * @param mixed $data
+     * @param boolean $nolongerused
      */
     public function instance_config_save($data, $nolongerused = false) {
         if (empty($data->questid)) {
@@ -196,9 +196,9 @@ class block_quest_classification extends block_base {
      *
      * @param stdClass $quest
      * @param stdClass $course
-     * @param type $currentgroup
-     * @param type $actionclasification 'global' or 'teams'
-     * @param type $nstudents
+     * @param int $currentgroup
+     * @param string $actionclasification 'global' or 'teams'
+     * @param int $nstudents
      * @return string Table with the students' scores
      */
     public function print_simple_calification(stdClass $quest, stdClass $course, $currentgroup, $actionclasification, $nstudents) {
@@ -396,8 +396,8 @@ class block_quest_classification extends block_base {
 
     /**
      * Users of the course that can view the classification.
-     * @param type $courseid
-     * @param type $sort
+     * @param int $courseid
+     * @param string $sort
      * @return array users
      */
     public function block_quest_get_course_members($courseid, $sort = 's.timeaccess') {
@@ -418,7 +418,7 @@ class block_quest_classification extends block_base {
     /**
      * Get scores of the teams
      * @param stdClass $quest
-     * @return type
+     * @return mixed
      */
     public function block_quest_get_calification_teams(stdClass $quest) {
         global $DB;
