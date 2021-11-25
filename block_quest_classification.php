@@ -315,7 +315,7 @@ class block_quest_classification extends block_base {
                         }
                         $clasification = $DB->get_record('quest_calification_users',
                                 array('userid' => $user->id, 'questid' => $quest->id));
-                        if ($clasification->teamid == $team->id) {
+                        if ($clasification && $clasification->teamid == $team->id) {
                             $existy = false;
                             foreach ($teamstemp as $teamtemp) {
                                 if ($teamtemp->id == $team->id) {
@@ -360,6 +360,7 @@ class block_quest_classification extends block_base {
                 $tablesort->sortdata[] = $sortdata;
             }
             uasort($tablesort->sortdata, array($this, 'sort_by_grade'));
+            $table = new html_table();
             $table->data = array();
             foreach ($tablesort->sortdata as $key => $row) {
                 $table->data[] = $tablesort->data[$key];
@@ -368,7 +369,7 @@ class block_quest_classification extends block_base {
                                   'center', 'center', 'center', 'center', 'center');
 
             $columns = array('team', 'calification');
-            $table->width = "95%";
+            $string = array();
             foreach ($columns as $column) {
                 $string[$column] = get_string("$column", 'quest');
                 if ($sort != $column) {
@@ -387,7 +388,6 @@ class block_quest_classification extends block_base {
             }
             $table->head = array(get_string('team', 'block_quest_classification'), get_string('calification',
                         'block_quest_classification'));
-            $table->headspan = array(2, 1);
         }
         $tablestring = html_writer::table($table);
 
