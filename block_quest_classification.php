@@ -436,9 +436,9 @@ class block_quest_classification extends block_base {
         $sort = 'calification';
         $dir = 'DESC';
         if ($dir == 'ASC') {
-            return ($a[$sort] > $b[$sort]);
+            return ($a[$sort] - $b[$sort]);
         } else {
-            return ($a[$sort] < $b[$sort]);
+            return ($b[$sort] - $a[$sort]);
         }
     }
 
